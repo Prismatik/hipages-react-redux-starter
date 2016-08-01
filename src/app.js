@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
-import configureStore from './redux/store';
-import routes from './routes';
+import MessageApp from './containers/message-app';
 
-const store = configureStore();
+const initialState = {
+  messages: [{
+    senderImage: 'https://placekitten.com/100/100',
+    message: 'Hello World'
+  },
+  {
+    senderImage: 'https://placekitten.com/100/100',
+    message: 'Foobar'
+  }]
+};
 
 ReactDOM.render((
-  <Provider store={store}>
-    <Router history={hashHistory} routes={routes(store)} />
-  </Provider>
+  <MessageApp {...initialState} />
 ), document.getElementById('app'));
